@@ -1,31 +1,31 @@
-function displaypoem(response) {
-  console.log("poem generated");
-  typewriter
-    .typeString(response.data.answer)
-    .pauseFor(500)
-
-    .pauseFor(500)
-
-    .start();
-}
-const typewriter = new typewriter(poemElement, {
+const poemElement = document.querySelector("#poem"); // Make sure poem element exists
+const typewriter = new Typewriter(poemElement, {
   loop: false,
   delay: 75,
 });
+
+function displayPoem(response) {
+  console.log("Poem generated");
+  typewriter.typeString(response.data.answer).pauseFor(500).start();
+}
+
 function generatePoem(event) {
   event.preventDefault();
-  let instructionsinput = document.querySelector("user-instructions");
+  let instructionsInput = document.querySelector("#user-instructions");
   let apikey = "30927dtfa44b4770359oe8258a9c5b2c";
-  let prompt = "generate a poem about $(instructionsinput.value)";
-  let context = "";
-  let apiurl =
-    "https://api.shecodes.io/ai/v1/generate?prompt=${prompt}&context=${context}&key=${apikey}";
-  console.log("generating poem");
+  let prompt = `user instruction:generate a poem about ${instructionsInput.value}`;
+  let context =
+    "you are a romantic poem expert and love to write short poems. your mission is to generate a four-line poem. Make sure to follow the user instructions.";
+  let apiurl = `https://api.shecodes.io/ai/v1/generate?prompt=${encodeURIComponent(
+    prompt
+  )}&context=${encodeURIComponent(context)}&key=${apikey}`;
 
-  axios.get(apiurl).then(displaypoem);
-  let poemElement = document.querySelector("#poem");
-  poemElement.innerHTML = "";
+  console.log(`prompt: ${prompt}`);
+  console.log(`context: ${context}`);
+  console.log("Generating poem");
 
-  let poemFormElement = document.querySelector("#poem-generator-form");
-  poemFormElement.addEventListener("submit", generatePoem);
+  axios.get(apiurl).then(displayPoem);
 }
+
+let poemFormElement = document.querySelector("#poem-generator-form");
+poemFormElement.addEventListener("submit", generatePoem);
