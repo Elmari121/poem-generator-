@@ -1,6 +1,8 @@
 const poemElement = document.querySelector("#poem");
+
 const typewriter = new Typewriter(poemElement, {
   loop: false,
+  delay: 75,
   delay: 50,
 });
 
