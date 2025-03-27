@@ -1,7 +1,7 @@
-const poemElement = document.querySelector("#poem"); // Make sure poem element exists
+const poemElement = document.querySelector("#poem");
 const typewriter = new Typewriter(poemElement, {
   loop: false,
-  delay: 75,
+  delay: 50,
 });
 
 function displayPoem(response) {
