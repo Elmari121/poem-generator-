@@ -14,10 +14,11 @@
       <h1>welcome to my AI poem generator</h1>
     </header>
     <main>
+      <DIV class="form-container">
       <form id="poem-generator-form">
         <input
           type="text"
-          placeholder="enter the topic of your poem"
+          placeholder="enter the topic of the poem"
           required
           autofocus
           autocomplete="off"
@@ -26,7 +27,9 @@
         <input type="submit" class="submit-button" />
         
       </form>
-      <div class="poem" id="poem"></div>
+      <div class="hint">i.e: Flower, Paris or Food</div>
+      </DIV>
+      <div class="poem hidden" id="poem"></div>
     </main>
     <script src="index.js"></script>
   </body>
